@@ -1,3 +1,5 @@
+using System.Linq.Expressions;
+
 namespace DesafioProjetoHospedagem.Models
 {
     public class Reserva
@@ -15,18 +17,24 @@ namespace DesafioProjetoHospedagem.Models
 
         public void CadastrarHospedes(List<Pessoa> hospedes)
         {
-            // TODO: Verificar se a capacidade é maior ou igual ao número de hóspedes sendo recebido
-            // *IMPLEMENTE AQUI*
-            if (true)
+            //Implementado!!
+     
+             if (Suite.Capacidade>=hospedes.Count)
             {
                 Hospedes = hospedes;
             }
-            else
-            {
-                // TODO: Retornar uma exception caso a capacidade seja menor que o número de hóspedes recebido
-                // *IMPLEMENTE AQUI*
+            else{
+
+                string mensagem = "O numero de hóspedes nao pode ser maior do que"+
+                 " a capacidade da suite.";
+
+                throw new Exception(mensagem);
+                
             }
+
         }
+
+       
 
         public void CadastrarSuite(Suite suite)
         {
@@ -35,23 +43,25 @@ namespace DesafioProjetoHospedagem.Models
 
         public int ObterQuantidadeHospedes()
         {
-            // TODO: Retorna a quantidade de hóspedes (propriedade Hospedes)
-            // *IMPLEMENTE AQUI*
-            return 0;
+            //Implementado
+            int quantidade_hospedes = Hospedes.Count;
+            return quantidade_hospedes;
         }
 
         public decimal CalcularValorDiaria()
         {
-            // TODO: Retorna o valor da diária
-            // Cálculo: DiasReservados X Suite.ValorDiaria
-            // *IMPLEMENTE AQUI*
-            decimal valor = 0;
+           //Implementado
 
-            // Regra: Caso os dias reservados forem maior ou igual a 10, conceder um desconto de 10%
-            // *IMPLEMENTE AQUI*
-            if (true)
+            decimal calc_diaria = DiasReservados * Suite.ValorDiaria;
+            decimal valor = calc_diaria;
+
+          //Implementado
+            if (DiasReservados>=10)
             {
-                valor = 0;
+                
+                decimal val_com_desconto = calc_diaria - (calc_diaria * 0.1M);
+                valor = val_com_desconto;
+               
             }
 
             return valor;
